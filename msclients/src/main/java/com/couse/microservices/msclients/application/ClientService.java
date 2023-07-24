@@ -1,8 +1,6 @@
 package com.couse.microservices.msclients.application;
 
 import com.couse.microservices.msclients.domain.Client;
-import com.couse.microservices.msclients.dto.request.ClientRequestDTO;
-import com.couse.microservices.msclients.dto.response.ClientResponseDTO;
 import com.couse.microservices.msclients.infra.repository.ClientRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,11 +15,9 @@ public class ClientService {
     private final ClientRepository repository;
 
     @Transactional
-    public ClientResponseDTO saveClient(Client client) {
+    public Client saveClient(Client client) {
 
-        var response = repository.save(client);
-
-        return new ClientResponseDTO(response);
+        return repository.save(client);
     }
 
     public Optional<Client> getByCPF(String cpf) {
