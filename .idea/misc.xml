@@ -6,6 +6,7 @@
       <list>
         <option value="$PROJECT_DIR$/eurekaserver/pom.xml" />
         <option value="$PROJECT_DIR$/msclients/pom.xml" />
+        <option value="$PROJECT_DIR$/mscloudgateway/pom.xml" />
       </list>
     </option>
   </component>
