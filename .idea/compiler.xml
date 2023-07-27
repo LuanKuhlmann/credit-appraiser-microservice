@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="eurekaserver" />
+        <module name="mscards" />
         <module name="mscloudgateway" />
         <module name="msclients" />
       </profile>
@@ -16,6 +17,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="eurekaserver" options="-parameters" />
+      <module name="mscards" options="-parameters" />
       <module name="msclients" options="-parameters" />
       <module name="mscloudgateway" options="-parameters" />
     </option>
