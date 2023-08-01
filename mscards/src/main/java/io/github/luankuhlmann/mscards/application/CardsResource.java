@@ -3,7 +3,7 @@ package io.github.luankuhlmann.mscards.application;
 import io.github.luankuhlmann.mscards.application.representation.CardSaveRequestDto;
 import io.github.luankuhlmann.mscards.application.representation.CardsPerClientResponseDto;
 import io.github.luankuhlmann.mscards.domain.Card;
-import io.github.luankuhlmann.mscards.domain.ClientCard;
+import io.github.luankuhlmann.mscards.domain.CustomerCard;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 public class CardsResource {
 
     private final CardService cardService;
-    private final ClientCardService clientCardService;
+    private final CustomerCardService customerCardService;
 
     @GetMapping
     public String status() {
@@ -40,7 +40,7 @@ public class CardsResource {
 
     @GetMapping(params = "cpf")
     public ResponseEntity<List<CardsPerClientResponseDto>> getCardsByClient(@RequestParam("cpf") String cpf) {
-        List<ClientCard> list = clientCardService.listCardsByCpf(cpf);
+        List<CustomerCard> list = customerCardService.listCardsByCpf(cpf);
         List<CardsPerClientResponseDto> resultList = list.stream()
                 .map(CardsPerClientResponseDto::fromModel)
                 .collect(Collectors.toList());

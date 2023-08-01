@@ -12,7 +12,7 @@
 	<artifactId>mscreditappraiser</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>mscreditappraiser</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Credit Appraiser microservice</description>
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud.version>2022.0.4</spring-cloud.version>
@@ -26,7 +26,11 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-feign</artifactId>
+			<version>1.4.7.RELEASE</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>

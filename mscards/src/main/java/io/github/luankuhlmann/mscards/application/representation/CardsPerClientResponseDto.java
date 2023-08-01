@@ -1,6 +1,6 @@
 package io.github.luankuhlmann.mscards.application.representation;
 
-import io.github.luankuhlmann.mscards.domain.ClientCard;
+import io.github.luankuhlmann.mscards.domain.CustomerCard;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +16,7 @@ public class CardsPerClientResponseDto {
     private String flag;
     private BigDecimal approvedLimit;
 
-    public static CardsPerClientResponseDto fromModel(ClientCard model) {
+    public static CardsPerClientResponseDto fromModel(CustomerCard model) {
         return new CardsPerClientResponseDto(
                 model.getCard().getName(),
                 model.getCard().getFlag().toString(),

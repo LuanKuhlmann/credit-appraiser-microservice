@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-public class Client {
+public class Customer {
 
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
@@ -19,7 +19,7 @@ public class Client {
     private String name;
     private Integer age;
 
-    public Client(String cpf, String name, Integer age) {
+    public Customer(String cpf, String name, Integer age) {
         this.cpf = cpf;
         this.name = name;
         this.age = age;

@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.couse.microservices</groupId>
-	<artifactId>msclients</artifactId>
+	<artifactId>mscustomers</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>msclients</name>
-	<description>Clients Microservices</description>
+	<name>mscustomers</name>
+	<description>Customers Microservices</description>
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud.version>2022.0.3</spring-cloud.version>
