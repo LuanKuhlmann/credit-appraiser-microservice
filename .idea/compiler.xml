@@ -10,7 +10,7 @@
         <module name="eurekaserver" />
         <module name="mscards" />
         <module name="mscloudgateway" />
-        <module name="msclients" />
+        <module name="mscustomers" />
         <module name="mscreditappraiser" />
       </profile>
     </annotationProcessing>
@@ -19,9 +19,9 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="eurekaserver" options="-parameters" />
       <module name="mscards" options="-parameters" />
-      <module name="msclients" options="-parameters" />
       <module name="mscloudgateway" options="-parameters" />
       <module name="mscreditappraiser" options="-parameters" />
+      <module name="mscustomers" options="-parameters" />
     </option>
   </component>
 </project>
