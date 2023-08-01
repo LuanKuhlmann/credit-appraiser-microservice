@@ -1,13 +1,13 @@
-package io.github.luankuhlmann.msclients;
+package io.github.luankuhlmann.mscustomers;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MsclientsApplication {
+public class MscustomersApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MsclientsApplication.class, args);
+		SpringApplication.run(MscustomersApplication.class, args);
 	}
 
 }

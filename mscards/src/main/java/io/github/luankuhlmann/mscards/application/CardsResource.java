@@ -1,7 +1,7 @@
 package io.github.luankuhlmann.mscards.application;
 
 import io.github.luankuhlmann.mscards.application.representation.CardSaveRequestDto;
-import io.github.luankuhlmann.mscards.application.representation.CardsPerClientResponseDto;
+import io.github.luankuhlmann.mscards.application.representation.CardsPerCustomerResponseDto;
 import io.github.luankuhlmann.mscards.domain.Card;
 import io.github.luankuhlmann.mscards.domain.CustomerCard;
 import lombok.RequiredArgsConstructor;
@@ -39,10 +39,10 @@ public class CardsResource {
     }
 
     @GetMapping(params = "cpf")
-    public ResponseEntity<List<CardsPerClientResponseDto>> getCardsByClient(@RequestParam("cpf") String cpf) {
+    public ResponseEntity<List<CardsPerCustomerResponseDto>> getCardsByCustomer(@RequestParam("cpf") String cpf) {
         List<CustomerCard> list = customerCardService.listCardsByCpf(cpf);
-        List<CardsPerClientResponseDto> resultList = list.stream()
-                .map(CardsPerClientResponseDto::fromModel)
+        List<CardsPerCustomerResponseDto> resultList = list.stream()
+                .map(CardsPerCustomerResponseDto::fromModel)
                 .collect(Collectors.toList());
         return ResponseEntity.ok(resultList);
     }

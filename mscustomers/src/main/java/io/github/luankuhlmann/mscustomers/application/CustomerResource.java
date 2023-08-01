@@ -1,6 +1,6 @@
-package io.github.luankuhlmann.msclients.application;
+package io.github.luankuhlmann.mscustomers.application;
 
-import io.github.luankuhlmann.msclients.application.representation.CustomerSaveRequest;
+import io.github.luankuhlmann.mscustomers.application.representation.CustomerSaveRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

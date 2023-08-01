@@ -1,5 +1,6 @@
 package io.github.luankuhlmann.mscards.domain;
 
+
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;

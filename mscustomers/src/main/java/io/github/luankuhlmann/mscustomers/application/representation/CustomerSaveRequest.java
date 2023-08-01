@@ -1,6 +1,6 @@
-package io.github.luankuhlmann.msclients.application.representation;
+package io.github.luankuhlmann.mscustomers.application.representation;
 
-import io.github.luankuhlmann.msclients.domain.Customer;
+import io.github.luankuhlmann.mscustomers.domain.Customer;
 import lombok.Data;
 
 @Data

@@ -1,7 +1,7 @@
-package io.github.luankuhlmann.msclients.application;
+package io.github.luankuhlmann.mscustomers.application;
 
-import io.github.luankuhlmann.msclients.domain.Customer;
-import io.github.luankuhlmann.msclients.infra.repository.CustomerRepository;
+import io.github.luankuhlmann.mscustomers.domain.Customer;
+import io.github.luankuhlmann.mscustomers.infra.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

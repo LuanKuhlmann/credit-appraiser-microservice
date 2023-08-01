@@ -1,10 +1,10 @@
-package io.github.luankuhlmann.msclients;
+package io.github.luankuhlmann.mscustomers;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MsclientsApplicationTests {
+class MscustomersApplicationTests {
 
 	@Test
 	void contextLoads() {

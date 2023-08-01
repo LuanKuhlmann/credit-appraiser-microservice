@@ -1,4 +1,4 @@
-package io.github.luankuhlmann.msclients.domain;
+package io.github.luankuhlmann.mscustomers.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

@@ -1,6 +1,6 @@
-package io.github.luankuhlmann.msclients.infra.repository;
+package io.github.luankuhlmann.mscustomers.infra.repository;
 
-import io.github.luankuhlmann.msclients.domain.Customer;
+import io.github.luankuhlmann.mscustomers.domain.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

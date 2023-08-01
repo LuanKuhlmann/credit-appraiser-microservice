@@ -8,7 +8,7 @@
 		<version>3.1.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.couse.microservices</groupId>
+	<groupId>io.github.luankuhlmann</groupId>
 	<artifactId>mscustomers</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>mscustomers</name>
