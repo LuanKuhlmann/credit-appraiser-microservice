@@ -33,7 +33,7 @@ public class CardResource {
     }
 
     @GetMapping(params = "income")
-    public ResponseEntity<List<Card>> getCardIncomeUntil(@RequestParam("income") Long income) {
+    public ResponseEntity<List<Card>> getCardMaxIncome(@RequestParam("income") Long income) {
         List<Card> list = cardService.getCardIncomeLowerEqual(income);
         return ResponseEntity.ok(list);
     }

@@ -1,9 +1,7 @@
 package io.github.luankuhlmann.mscreditappraiser.application;
 
 import feign.FeignException;
-import io.github.luankuhlmann.mscreditappraiser.domain.model.CustomerCard;
-import io.github.luankuhlmann.mscreditappraiser.domain.model.CustomerData;
-import io.github.luankuhlmann.mscreditappraiser.domain.model.CustomerSituation;
+import io.github.luankuhlmann.mscreditappraiser.domain.model.*;
 import io.github.luankuhlmann.mscreditappraiser.ex.CustomerDataNotFoundException;
 import io.github.luankuhlmann.mscreditappraiser.ex.MicroservicesCommunicationErrorException;
 import io.github.luankuhlmann.mscreditappraiser.infra.clients.CardResourceClient;
@@ -13,7 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -38,5 +38,39 @@ public class CreditAppraiserService {
             }
             throw new MicroservicesCommunicationErrorException(e.getMessage(), status);
         }
+    }
+
+    public CustomerAppraisalResult appraiseCustomer(String cpf, Long income) throws CustomerDataNotFoundException, MicroservicesCommunicationErrorException{
+       try{
+           ResponseEntity<CustomerData> customerDataResponse = customerClient.customerData(cpf);
+           ResponseEntity<List<Card>> cardResponse = cardClient.getCardMaxIncome(income);
+
+           List<Card> cards = cardResponse.getBody();
+           var ApprovedCardsList = cards.stream().map(card -> {
+
+               CustomerData customerData = customerDataResponse.getBody();
+
+               BigDecimal basicLimit = card.getBasicLimit();
+               BigDecimal ageBD = BigDecimal.valueOf(customerData.getAge());
+               var factor =  ageBD.divide(BigDecimal.valueOf(10));
+               BigDecimal approvedLimitBD = factor.multiply(basicLimit);
+
+               ApprovedCard approved = new ApprovedCard();
+               approved.setCard(card.getName());
+               approved.setFlag(card.getFlag());
+               approved.setApprovedLimit(approvedLimitBD);
+
+               return approved;
+           }).collect(Collectors.toList());
+
+           return new CustomerAppraisalResult(ApprovedCardsList);
+
+       } catch (FeignException.FeignClientException e) {
+           int status = e.status();
+           if(HttpStatus.NOT_FOUND.value() == status) {
+               throw new CustomerDataNotFoundException();
+           }
+           throw new MicroservicesCommunicationErrorException(e.getMessage(), status);
+       }
     }
 }
