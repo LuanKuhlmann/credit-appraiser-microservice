@@ -17,11 +17,11 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="eurekaserver" options="-parameters" />
+      <module name="eurekaserver" options="" />
       <module name="mscards" options="-parameters" />
-      <module name="mscloudgateway" options="-parameters" />
+      <module name="mscloudgateway" options="" />
       <module name="mscreditappraiser" options="-parameters" />
-      <module name="mscustomers" options="-parameters" />
+      <module name="mscustomers" options="" />
     </option>
   </component>
 </project>
