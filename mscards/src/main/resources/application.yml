@@ -18,5 +18,5 @@ eureka:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
 
 mq:
-  queue:
+  queues:
     cards-issuance: cards-issuance

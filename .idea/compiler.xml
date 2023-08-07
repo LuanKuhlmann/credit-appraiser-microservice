@@ -14,12 +14,15 @@
         <module name="mscreditappraiser" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="msclients" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="eurekaserver" options="" />
+      <module name="eurekaserver" options="-parameters" />
       <module name="mscards" options="-parameters" />
-      <module name="mscloudgateway" options="" />
+      <module name="mscloudgateway" options="-parameters" />
       <module name="mscreditappraiser" options="-parameters" />
       <module name="mscustomers" options="-parameters" />
     </option>
