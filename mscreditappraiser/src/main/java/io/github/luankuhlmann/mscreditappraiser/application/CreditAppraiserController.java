@@ -1,10 +1,9 @@
 package io.github.luankuhlmann.mscreditappraiser.application;
 
-import io.github.luankuhlmann.mscreditappraiser.domain.model.CustomerAppraisalResult;
-import io.github.luankuhlmann.mscreditappraiser.domain.model.CustomerSituation;
+import io.github.luankuhlmann.mscreditappraiser.domain.model.*;
+import io.github.luankuhlmann.mscreditappraiser.ex.CardOrderErrorException;
 import io.github.luankuhlmann.mscreditappraiser.ex.CustomerDataNotFoundException;
 import io.github.luankuhlmann.mscreditappraiser.ex.MicroservicesCommunicationErrorException;
-import io.github.luankuhlmann.mscreditappraiser.domain.model.AppraiserData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,6 +43,17 @@ public class CreditAppraiserController {
             return ResponseEntity.notFound().build();
         } catch (MicroservicesCommunicationErrorException e) {
             return ResponseEntity.status(HttpStatus.resolve(e.getStatus())).body(e.getMessage());
+        }
+    }
+
+    @PostMapping("order-card")
+    public ResponseEntity orderCard(@RequestBody CardOrderData data) {
+        try {
+            CardOrderProtocol cardOrderProtocol = creditAppraiserService
+                    .orderCardIssuance(data);
+            return ResponseEntity.ok(cardOrderProtocol);
+        } catch (CardOrderErrorException e) {
+            return ResponseEntity.internalServerError().body(e.getMessage());
         }
     }
 }

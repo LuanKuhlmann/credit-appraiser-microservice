@@ -2,10 +2,12 @@ package io.github.luankuhlmann.mscreditappraiser.application;
 
 import feign.FeignException;
 import io.github.luankuhlmann.mscreditappraiser.domain.model.*;
+import io.github.luankuhlmann.mscreditappraiser.ex.CardOrderErrorException;
 import io.github.luankuhlmann.mscreditappraiser.ex.CustomerDataNotFoundException;
 import io.github.luankuhlmann.mscreditappraiser.ex.MicroservicesCommunicationErrorException;
 import io.github.luankuhlmann.mscreditappraiser.infra.clients.CardResourceClient;
 import io.github.luankuhlmann.mscreditappraiser.infra.clients.CustomerResourceClient;
+import io.github.luankuhlmann.mscreditappraiser.infra.clients.mqueue.CardIssuancePublisher;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,6 +24,8 @@ public class CreditAppraiserService {
 
     private final CustomerResourceClient customerClient;
     private final CardResourceClient cardClient;
+    private final CardIssuancePublisher cardIssuancePublisher;
+
     public CustomerSituation getCustomerSituation(String cpf) throws CustomerDataNotFoundException, MicroservicesCommunicationErrorException {
         try {
             ResponseEntity<CustomerData> customerDataResponse = customerClient.customerData(cpf);
@@ -72,5 +77,15 @@ public class CreditAppraiserService {
            }
            throw new MicroservicesCommunicationErrorException(e.getMessage(), status);
        }
+    }
+
+    public CardOrderProtocol orderCardIssuance(CardOrderData data) {
+        try {
+            cardIssuancePublisher.orderCard(data);
+            var protocol = UUID.randomUUID().toString();
+            return new CardOrderProtocol(protocol);
+        } catch (Exception e) {
+            throw new CardOrderErrorException(e.getMessage());
+        }
     }
 }
