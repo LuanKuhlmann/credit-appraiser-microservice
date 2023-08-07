@@ -23,9 +23,8 @@ public class CreditAppraiserController {
 
     @GetMapping(value = "customer-situation", params = "cpf")
     public ResponseEntity CustomerSituationQuery(@RequestParam("cpf") String cpf) {
-        CustomerSituation customerSituation = null;
         try {
-            customerSituation = creditAppraiserService.getCustomerSituation(cpf);
+            CustomerSituation customerSituation = creditAppraiserService.getCustomerSituation(cpf);
             return ResponseEntity.ok(customerSituation);
         } catch (CustomerDataNotFoundException e) {
             return ResponseEntity.notFound().build();
@@ -37,7 +36,8 @@ public class CreditAppraiserController {
     @PostMapping
     public ResponseEntity appraiseCustomer(@RequestBody AppraiserData data) {
         try {
-            CustomerAppraisalResult customerAppraisalResult = creditAppraiserService.appraiseCustomer(data.getCpf(), data.getIncome());
+            CustomerAppraisalResult customerAppraisalResult = creditAppraiserService
+                    .appraiseCustomer(data.getCpf(), data.getIncome());
             return ResponseEntity.ok(customerAppraisalResult);
         } catch (CustomerDataNotFoundException e) {
             return ResponseEntity.notFound().build();
@@ -46,12 +46,12 @@ public class CreditAppraiserController {
         }
     }
 
-    @PostMapping("order-card")
-    public ResponseEntity orderCard(@RequestBody CardOrderData data) {
+    @PostMapping("issue-card")
+    public ResponseEntity issueCard(@RequestBody CardIssueData data) {
         try {
-            CardOrderProtocol cardOrderProtocol = creditAppraiserService
-                    .orderCardIssuance(data);
-            return ResponseEntity.ok(cardOrderProtocol);
+            CardIssueProtocol cardIssueProtocol = creditAppraiserService
+                    .cardOrderIssuance(data);
+            return ResponseEntity.ok(cardIssueProtocol);
         } catch (CardOrderErrorException e) {
             return ResponseEntity.internalServerError().body(e.getMessage());
         }

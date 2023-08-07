@@ -11,7 +11,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CustomerCardService {
 
-    private CustomerCardRepository repository;
+    private final CustomerCardRepository repository;
 
     public List<CustomerCard> listCardsByCpf(String cpf) {
         return repository.findByCpf(cpf);

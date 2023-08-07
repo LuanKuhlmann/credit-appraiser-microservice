@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class CardOrderProtocol {
+public class CardIssueProtocol {
     private String protocol;
 }

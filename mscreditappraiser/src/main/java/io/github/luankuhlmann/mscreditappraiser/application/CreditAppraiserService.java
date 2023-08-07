@@ -51,13 +51,12 @@ public class CreditAppraiserService {
            ResponseEntity<List<Card>> cardResponse = cardClient.getCardMaxIncome(income);
 
            List<Card> cards = cardResponse.getBody();
-           var ApprovedCardsList = cards.stream().map(card -> {
-
+           var approvedCardList = cards.stream().map(card -> {
                CustomerData customerData = customerDataResponse.getBody();
 
                BigDecimal basicLimit = card.getBasicLimit();
                BigDecimal ageBD = BigDecimal.valueOf(customerData.getAge());
-               var factor =  ageBD.divide(BigDecimal.valueOf(10));
+               var factor = ageBD.divide(BigDecimal.valueOf(10));
                BigDecimal approvedLimitBD = factor.multiply(basicLimit);
 
                ApprovedCard approved = new ApprovedCard();
@@ -68,7 +67,7 @@ public class CreditAppraiserService {
                return approved;
            }).collect(Collectors.toList());
 
-           return new CustomerAppraisalResult(ApprovedCardsList);
+           return new CustomerAppraisalResult(approvedCardList);
 
        } catch (FeignException.FeignClientException e) {
            int status = e.status();
@@ -79,11 +78,11 @@ public class CreditAppraiserService {
        }
     }
 
-    public CardOrderProtocol orderCardIssuance(CardOrderData data) {
+    public CardIssueProtocol cardOrderIssuance(CardIssueData data) {
         try {
-            cardIssuancePublisher.orderCard(data);
+            cardIssuancePublisher.issueCard(data);
             var protocol = UUID.randomUUID().toString();
-            return new CardOrderProtocol(protocol);
+            return new CardIssueProtocol(protocol);
         } catch (Exception e) {
             throw new CardOrderErrorException(e.getMessage());
         }
